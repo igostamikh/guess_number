@@ -7,7 +7,7 @@ let highscore = 0;
 document.querySelector('.question').textContent = secretNumber; //to delet
 document.querySelector('.score').textContent = score;
 document.querySelector('.number-input').value = '';
-
+//Функція змінює очки та дає підказки
 function checkNumber(str) {
   document.querySelector('.guess-message').textContent = str;
   score--;
