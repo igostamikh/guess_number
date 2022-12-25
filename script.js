@@ -8,10 +8,17 @@ document.querySelector('.question').textContent = secretNumber; //to delet
 document.querySelector('.score').textContent = score;
 document.querySelector('.number-input').value = '';
 //Функція змінює очки та дає підказки
-function checkNumber(str) {
+function checkNumber(str, key = true) {
   document.querySelector('.guess-message').textContent = str;
-  score--;
-  document.querySelector('.score').textContent = score;
+  if (key) {
+    score--;
+    document.querySelector('.score').textContent = score;
+  } else {
+    if (highscore < score) {
+      highscore = score;
+      document.querySelector('.highscore').textContent = highscore;
+    }
+  }
 }
 
 document.querySelector('.check').addEventListener('click', function () {
@@ -21,11 +28,7 @@ document.querySelector('.check').addEventListener('click', function () {
     document.querySelector('.guess-message').textContent =
       'Введите число от 1 до 20!';
   } else if (guessingNumber === secretNumber) {
-    document.querySelector('.guess-message').textContent = 'Победа!';
-    if (highscore < score) {
-      highscore = score;
-    }
-    document.querySelector('.highscore').textContent = highscore;
+    checkNumber('Победа!', false);
   } else if (guessingNumber > secretNumber) {
     checkNumber('Меньше!');
   } else if (guessingNumber < secretNumber) {
