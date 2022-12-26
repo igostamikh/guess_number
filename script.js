@@ -3,20 +3,20 @@
 let secretNumber;
 let score;
 let highscore = 0;
-//Функція ініциації нової гри
+// Функція ініциації нової гри
 function startNewGame() {
   secretNumber = Math.round(Math.random() * 20 + 1);
   score = 20;
   document.querySelector('.score').textContent = score;
   document.querySelector('.number-input').value = '';
   document.querySelector('.check').disabled = false;
-  document.querySelector('.question').textContent = secretNumber; //to delet
+  document.querySelector('.question').textContent = secretNumber; // to delet
 }
-//Функція змінює очки та дає підказки
+// Функція змінює очки та дає підказки
 function checkNumber(str, key = true) {
   document.querySelector('.guess-message').textContent = str;
   if (key) {
-    score--;
+    score -= 1;
     document.querySelector('.score').textContent = score;
   } else {
     document.querySelector('.check').disabled = true;
@@ -27,11 +27,12 @@ function checkNumber(str, key = true) {
     }
   }
 }
-//Обробка кнопки "Проверить"
-document.querySelector('.check').addEventListener('click', function () {
+// Обробка кнопки "Проверить"
+document.querySelector('.check').addEventListener('click', () => {
   const guessingNumber = Number(document.querySelector('.number-input').value);
 
   if (!guessingNumber || guessingNumber <= 0 || guessingNumber > 20) {
+    // eslint-disable-next-line operator-linebreak
     document.querySelector('.guess-message').textContent =
       'Введите число от 1 до 20!';
   } else if (guessingNumber === secretNumber) {
@@ -45,8 +46,7 @@ document.querySelector('.check').addEventListener('click', function () {
     checkNumber('Вы проиграли.');
   }
 });
-//Обробка кнопки "Сначала"
+// Обробка кнопки "Сначала"
 document.querySelector('.again').addEventListener('click', startNewGame);
 
 startNewGame();
-
