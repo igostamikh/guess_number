@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 let secretNumber;
 let score;
@@ -7,49 +7,45 @@ let highscore = 0;
 function startNewGame() {
   secretNumber = Math.round(Math.random() * 20 + 1);
   score = 20;
-  document.querySelector(".score").textContent = score;
-  document.querySelector(".number-input").value = "";
-  document.querySelector(".check").disabled = false;
-  document.querySelector(".question").textContent = secretNumber; //to delet
+  document.querySelector('.score').textContent = score;
+  document.querySelector('.number-input').value = '';
+  document.querySelector('.check').disabled = false;
+  document.querySelector('.question').textContent = secretNumber; //to delet
 }
 //Функція змінює очки та дає підказки
 function checkNumber(str, key = true) {
-  document.querySelector(".guess-message").textContent = str;
+  document.querySelector('.guess-message').textContent = str;
   if (key) {
     score--;
-    document.querySelector(".score").textContent = score;
+    document.querySelector('.score').textContent = score;
   } else {
-    document.querySelector(".check").disabled = true;
-    document.querySelector(".question").textContent = secretNumber;
+    document.querySelector('.check').disabled = true;
+    document.querySelector('.question').textContent = secretNumber;
     if (highscore < score) {
       highscore = score;
-      document.querySelector(".highscore").textContent = highscore;
+      document.querySelector('.highscore').textContent = highscore;
     }
   }
 }
 //Обробка кнопки "Проверить"
-document.querySelector(".check").addEventListener("click", function () {
-  const guessingNumber = Number(document.querySelector(".number-input").value);
+document.querySelector('.check').addEventListener('click', function () {
+  const guessingNumber = Number(document.querySelector('.number-input').value);
 
   if (!guessingNumber || guessingNumber <= 0 || guessingNumber > 20) {
-    document.querySelector(".guess-message").textContent =
-      "Введите число от 1 до 20!";
+    document.querySelector('.guess-message').textContent =
+      'Введите число от 1 до 20!';
   } else if (guessingNumber === secretNumber) {
-    checkNumber("Победа!", false);
+    checkNumber('Победа!', false);
   } else if (guessingNumber > secretNumber && score > 1) {
-    checkNumber("Меньше!");
+    checkNumber('Меньше!');
   } else if (guessingNumber < secretNumber && score > 1) {
-    checkNumber("Больше!");
+    checkNumber('Больше!');
   } else {
-    document.querySelector(".check").disabled = true;
-    checkNumber("Вы проиграли.");
+    document.querySelector('.check').disabled = true;
+    checkNumber('Вы проиграли.');
   }
 });
-//Обробка кнопки "Сначала"
-document.querySelector(".again").addEventListener("click", startNewGame);
-
-startNewGame();
-/*1.Визначити число від 1 до 20
+/*TODO: 1.Визначити число від 1 до 20
 2.Порівняти з введенним:
  а) якщо замале вивести - "Більше!",
  б) якщо завелике вивести - "Менше",
