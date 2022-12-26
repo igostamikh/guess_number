@@ -35,8 +35,6 @@ document.querySelector(".check").addEventListener("click", function () {
     checkNumber("Больше!");
   }
   
-  console.log(score);
-
   if (score === 0) {
     document.querySelector(".check").disabled = true;
     document.querySelector(".guess-message").textContent = "Вы проиграли.";
