@@ -34,6 +34,11 @@ document.querySelector('.check').addEventListener('click', function () {
   } else if (guessingNumber < secretNumber) {
     checkNumber('Больше!');
   }
+  
+  if(score === 0) {
+    document.querySelector('.check').disabled = true;
+    document.querySelector('.guess-message').textContent = 'Вы проиграли.';
+  }
 });
 /*TODO: 1.Визначити число від 1 до 20
 2.Порівняти з введенним:
